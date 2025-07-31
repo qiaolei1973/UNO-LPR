@@ -48,7 +48,8 @@ class UNO(nn.Module):
 
 
     def begin_episode(self, learner_profile):
-        
+        # KL(kt_loss) and KS(seq_loss):
+            
         self.item_embedding = self.UniRec_model.item_embedding.weight
         self.learner_goal = torch.as_tensor(learner_profile['targets'],dtype=torch.long, device=self.device)
         
@@ -96,6 +97,8 @@ class UNO(nn.Module):
         }
 
     def step(self, observation=None):
+        # UniLPR model generates action:
+            
         self.step_count = self.step_count + 1
         batch = {
             "item_ids":self.hist_items.unsqueeze(0),
@@ -103,22 +106,16 @@ class UNO(nn.Module):
         }
         if self.add_goal:
             batch["goal"]=self.learner_goal
-
+                
+        
         outputs, question_output = self.UniRec_model(batch)
 
         state_encoding = self.output_fc(question_output[0, -1, :])
-        if self.reinforcement:
-            logits = torch.matmul(state_encoding, self.item_embedding.T) / self.temperature
-            probs = F.softmax(logits,dim=-1)
-            probs[0] = 0
-            action_dist = torch.distributions.Categorical(probs)
-            action = action_dist.sample().item()
-
-        else:
-            logits = torch.matmul(state_encoding, self.item_embedding.T) / self.temperature
-            probs = F.softmax(logits,dim=-1)
-            probs[0] = 0
-            action = torch.argmax(probs).item()
+        logits = torch.matmul(state_encoding, self.item_embedding.T) / self.temperature
+        probs = F.softmax(logits,dim=-1)
+        probs[0] = 0
+        action_dist = torch.distributions.Categorical(probs)
+        action = action_dist.sample().item()
 
         return action
 
@@ -169,6 +166,8 @@ class UNO(nn.Module):
         self.memory.set(data)
 
     def learn(self):
+        # GRPO optimize:
+            
         if not self.reinforcement:
             return 0, 0
 
@@ -190,10 +189,10 @@ class UNO(nn.Module):
             old_probs = F.softmax(logits, dim=-1)
 
         advantages = rewards
-        if rewards.shape[0] > 2:
-            advantages[1:-1,:] = advantages[1:-1,:] - advantages[:-2,:]
 
-        if advantages.shape[0] > 1:
+        # Personalized Advantage Estimation:
+        if rewards.shape[0] > 1:
+            advantages[1:,:] = advantages[1:,:] - advantages[:-1,:]
             advantages = (advantages - advantages.mean()) / (advantages.std() + 1e-8)
         else:
             advantages = torch.clamp(advantages, 1, -1)
@@ -222,7 +221,6 @@ class UNO(nn.Module):
                 logits = torch.matmul(group_states_encoding, self.item_embedding.T) / self.temperature
                 new_probs = F.softmax(logits, dim=-1)
                 group_new_probs = new_probs.gather(1, group_actions)
-
 
                 ratio = group_new_probs / (group_old_probs + 1e-8)
 
