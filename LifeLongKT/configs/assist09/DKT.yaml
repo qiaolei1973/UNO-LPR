@@ -1,0 +1,26 @@
+cuda_visible_devices: 7
+
+dataset_name: assist09
+model_name: DKT
+
+seed: 42
+
+train:
+  num_epochs: 100
+  learning_rate: 0.0005
+  patience: 10
+  model_save_path: "./saved_models"
+
+dataloader:
+  batch_size: 64
+  num_workers: 4
+  shuffle: True
+
+dataset:
+  max_length: 200
+
+model:
+  hidden_size: 128 
+  emb_dim: 128
+  dropout: 0.02
+  num_layers: 2

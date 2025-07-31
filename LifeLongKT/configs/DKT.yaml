@@ -1,0 +1,27 @@
+cuda_visible_devices: 2
+
+dataset_name: junyi 
+
+model_name: DKT
+
+seed: 42
+
+train:
+  num_epochs: 50
+  learning_rate: 0.0005
+  patience: 5
+  model_save_path: "./saved_models"
+
+dataloader:
+  batch_size: 64
+  num_workers: 4
+  shuffle: True
+
+dataset:
+  max_length: 200
+
+model:
+  hidden_size: 900 
+  emb_dim: 600 
+  dropout: 0.02
+  num_layers: 2

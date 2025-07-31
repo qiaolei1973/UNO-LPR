@@ -1,0 +1,100 @@
+base_config:
+  cuda_visible_devices: 0
+  data_path: ./data/processed_data/assist09/assist09_processed.csv
+  max_length: 200
+  max_episodes: 5000
+  wandb_project: EduRec-RL-Experiments-V0712
+  wandb_tags: ["CSEAL", "assist09"]
+  use_wandb: false
+  agent: CSEAL
+  eval_interval: 1
+  exp_name: rct-10 
+  runs: 1                 
+  n_step: false              
+
+
+
+rct-20:
+  learning_pattern: rct
+  max_steps: 20
+  num_goals: 500
+  agent_config:
+    hidden_dim: 128          
+    gamma: 0.98              
+    lr: 0.00003              
+    beta: 0.1                
+    temperature: 1
+    graph_path: ./data/processed_data/assist09/prerequest_graph.gexf
+    model_path: ./LifeLongKT/saved_models/DKT/assist09/750147_seed_42_best.pth
+    config_path: ./LifeLongKT/configs/assist09/DKT.yaml
+
+rct-10:
+  learning_pattern: rct
+  max_steps: 10
+  num_goals: 500
+  agent_config:
+    hidden_dim: 128          
+    gamma: 0.98              
+    lr: 0.00003              
+    beta: 0.1                
+    temperature: 1
+    graph_path: ./data/processed_data/assist09/prerequest_graph.gexf
+    model_path: ./LifeLongKT/saved_models/DKT/assist09/750147_seed_42_best.pth
+    config_path: ./LifeLongKT/configs/assist09/DKT.yaml
+
+rct-5:
+  learning_pattern: rct
+  max_steps: 5
+  num_goals: 500
+  agent_config:
+    hidden_dim: 128          
+    gamma: 0.98              
+    lr: 0.00003              
+    beta: 0.1                
+    temperature: 1
+    graph_path: ./data/processed_data/assist09/prerequest_graph.gexf
+    model_path: ./LifeLongKT/saved_models/DKT/assist09/750147_seed_42_best.pth
+    config_path: ./LifeLongKT/configs/assist09/DKT.yaml
+
+
+revise-s10-g10:
+  learning_pattern: revise
+  max_steps: 10
+  num_goals: 10
+  agent_config:
+    hidden_dim: 128
+    gamma: 0.98
+    lr: 0.00003
+    beta: 0.1
+    temperature: 1
+    graph_path: ./data/processed_data/assist09/prerequest_graph.gexf
+    model_path: ./LifeLongKT/saved_models/DKT/assist09/750147_seed_42_best.pth
+    config_path: ./LifeLongKT/configs/assist09/DKT.yaml
+
+revise-s20-g10:
+  learning_pattern: revise
+  max_steps: 20
+  num_goals: 10
+  agent_config:
+    hidden_dim: 128
+    gamma: 0.98
+    lr: 0.00003
+    beta: 0.1
+    temperature: 1
+    graph_path: ./data/processed_data/assist09/prerequest_graph.gexf
+    model_path: ./LifeLongKT/saved_models/DKT/assist09/750147_seed_42_best.pth
+    config_path: ./LifeLongKT/configs/assist09/DKT.yaml
+
+learn-s20-g10:
+  learning_pattern: learn
+  max_steps: 20
+  num_goals: 10
+  agent_config:
+    hidden_dim: 128
+    gamma: 0.98
+    lr: 0.00003
+    beta: 0.1
+    temperature: 1
+    graph_path: ./data/processed_data/assist09/prerequest_graph.gexf
+    model_path: ./LifeLongKT/saved_models/DKT/assist09/750147_seed_42_best.pth
+    config_path: ./LifeLongKT/configs/assist09/DKT.yaml

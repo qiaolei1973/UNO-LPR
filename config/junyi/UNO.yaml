@@ -1,0 +1,204 @@
+base_config:
+  cuda_visible_devices: 0
+  run_case_study: true
+  data_path: ./data/processed_data/junyi/junyi_processed.csv
+  max_length: 200
+  max_episodes: 5000
+  eval_interval: 1
+  n_step: false
+  wandb_project: EduRec-RL-Experiments-V0709
+  wandb_tags: ["UNO", "ALL_JunyiDataset"]
+  use_wandb: false
+  agent: UNO
+  runs: 3 
+  exp_name: revise-s20-g10
+
+revise-s10-g10:
+  learning_pattern: revise
+  max_steps: 10
+  num_goals: 10
+  agent_config:    
+    hidden_dim: 300        
+    gamma: 0.98             
+    lr: 0.00002               
+    clip_epsilon: 0.2      
+    po_epochs: 4           
+    mini_batch_size: 16      
+    group_size: 10          
+    beta: 0.1
+    add_goal: true         
+    kt_predict: true
+    seq_predict: true
+    kt_beta: 0.1
+    seq_beta: 0.1
+    temperature: 1
+    reinforcement: true
+
+revise-s20-g10:
+  learning_pattern: revise
+  max_steps: 20
+  num_goals: 10
+  agent_config:    
+    hidden_dim: 300        
+    gamma: 0.98             
+    lr: 0.00002               
+    clip_epsilon: 0.2      
+    po_epochs: 4           
+    mini_batch_size: 16      
+    group_size: 10          
+    beta: 0.1
+    add_goal: true         
+    kt_predict: true
+    seq_predict: true
+    kt_beta: 0.1
+    seq_beta: 0.1
+    temperature: 1
+    reinforcement: true
+
+revise-s30-g10:
+  learning_pattern: revise
+  max_steps: 30
+  num_goals: 10
+  agent_config:    
+    hidden_dim: 300        
+    gamma: 0.98             
+    lr: 0.00002               
+    clip_epsilon: 0.2      
+    po_epochs: 4           
+    mini_batch_size: 16      
+    group_size: 10          
+    beta: 0.1
+    add_goal: true         
+    kt_predict: true
+    seq_predict: true
+    kt_beta: 0.1
+    seq_beta: 0.1
+    temperature: 1
+    reinforcement: true
+
+
+learn-s10-g10:
+  learning_pattern: learn
+  max_steps: 10
+  num_goals: 10
+  agent_config:    
+    hidden_dim: 300        
+    gamma: 0.98             
+    lr: 0.00002               
+    clip_epsilon: 0.2      
+    po_epochs: 4           
+    mini_batch_size: 16      
+    group_size: 10          
+    beta: 0.1
+    add_goal: true         
+    kt_predict: true
+    seq_predict: true
+    kt_beta: 0.1
+    seq_beta: 0.1
+    temperature: 1
+    reinforcement: true
+
+learn-s20-g10:
+  learning_pattern: learn
+  max_steps: 20
+  num_goals: 10
+  agent_config:    
+    hidden_dim: 300        
+    gamma: 0.98             
+    lr: 0.00002               
+    clip_epsilon: 0.2      
+    po_epochs: 4           
+    mini_batch_size: 16      
+    group_size: 10          
+    beta: 0.1
+    add_goal: true         
+    kt_predict: true
+    seq_predict: true
+    kt_beta: 0.1
+    seq_beta: 0.1
+    temperature: 1
+    reinforcement: true
+
+learn-s30-g10:
+  learning_pattern: learn
+  max_steps: 30
+  num_goals: 10
+  agent_config:    
+    hidden_dim: 300        
+    gamma: 0.98             
+    lr: 0.00002               
+    clip_epsilon: 0.2      
+    po_epochs: 4           
+    mini_batch_size: 16      
+    group_size: 10          
+    beta: 0.1
+    add_goal: true         
+    kt_predict: true
+    seq_predict: true
+    kt_beta: 0.1
+    seq_beta: 0.1
+    temperature: 1
+    reinforcement: true
+
+rct-5:
+  learning_pattern: rct
+  max_steps: 5
+  num_goals: 500
+  agent_config:    
+    hidden_dim: 300        
+    gamma: 0.98             
+    lr: 0.00002               
+    clip_epsilon: 0.2      
+    po_epochs: 4           
+    mini_batch_size: 16      
+    group_size: 10          
+    beta: 0.1
+    add_goal: true         
+    kt_predict: true
+    seq_predict: true
+    kt_beta: 0.1
+    seq_beta: 0.1
+    temperature: 1
+    reinforcement: true
+
+rct-10:
+  learning_pattern: rct
+  max_steps: 10
+  num_goals: 500
+  agent_config:    
+    hidden_dim: 300        
+    gamma: 0.98             
+    lr: 0.00002               
+    clip_epsilon: 0.2      
+    po_epochs: 4           
+    mini_batch_size: 16      
+    group_size: 10          
+    beta: 0.1
+    add_goal: true         
+    kt_predict: true
+    seq_predict: true
+    kt_beta: 0.1
+    seq_beta: 0.1
+    temperature: 1
+    reinforcement: true
+
+rct-20:
+  learning_pattern: rct
+  max_steps: 20
+  num_goals: 500
+  agent_config:    
+    hidden_dim: 300        
+    gamma: 0.98             
+    lr: 0.00002               
+    clip_epsilon: 0.2      
+    po_epochs: 4           
+    mini_batch_size: 16      
+    group_size: 10          
+    beta: 0.1
+    add_goal: true         
+    kt_predict: true
+    seq_predict: true
+    kt_beta: 0.1
+    seq_beta: 0.1
+    temperature: 1
+    reinforcement: true

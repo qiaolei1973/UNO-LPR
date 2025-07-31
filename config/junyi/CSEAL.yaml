@@ -1,0 +1,114 @@
+base_config:
+  cuda_visible_devices: 0
+  data_path: ./data/processed_data/junyi/junyi_processed.csv
+  max_length: 200
+  max_episodes: 5000
+  wandb_project: EduRec-RL-Experiments-V0712
+  wandb_tags: ["CSEAL", "ALL_JunyiDataset"]
+  use_wandb: false
+  agent: CSEAL
+  eval_interval: 1
+  exp_name: revise-s20-g10
+  runs: 3 
+  n_step: false 
+
+
+rct-5:
+  learning_pattern: rct
+  max_steps: 5
+  num_goals: 500
+  agent_config:
+    hidden_dim: 300
+    gamma: 0.98
+    lr: 0.00003
+    beta: 0.1
+    temperature: 1
+  
+rct-10:
+  learning_pattern: rct
+  max_steps: 10
+  num_goals: 500
+  agent_config:
+    hidden_dim: 300
+    gamma: 0.98
+    lr: 0.00003
+    beta: 0.1
+    temperature: 1
+
+rct-20:
+  learning_pattern: rct
+  max_steps: 20
+  num_goals: 500
+  agent_config:
+    hidden_dim: 300 
+    gamma: 0.98
+    lr: 0.00003
+    beta: 0.1
+    temperature: 1
+
+
+revise-s10-g10:
+  learning_pattern: revise
+  max_steps: 10
+  num_goals: 10
+  agent_config:
+    hidden_dim: 300
+    gamma: 0.98
+    lr: 0.00003
+    beta: 0.1
+    temperature: 1
+
+revise-s20-g10:
+  learning_pattern: revise
+  max_steps: 20
+  num_goals: 10
+  agent_config:
+    hidden_dim: 300
+    gamma: 0.98
+    lr: 0.00003
+    beta: 0.1
+    temperature: 1
+
+revise-s30-g10:
+  learning_pattern: revise
+  max_steps: 30
+  num_goals: 10
+  agent_config:
+    hidden_dim: 300
+    gamma: 0.98
+    lr: 0.00003
+    beta: 0.1
+    temperature: 1
+
+learn-s10-g10:
+  learning_pattern: learn
+  max_steps: 10
+  num_goals: 10
+  agent_config:
+    hidden_dim: 300
+    gamma: 0.98
+    lr: 0.00003
+    beta: 0.1
+    temperature: 1
+
+learn-s20-g10:
+  learning_pattern: learn
+  max_steps: 20
+  num_goals: 10
+  agent_config:
+    hidden_dim: 300
+    gamma: 0.98
+    lr: 0.00003
+    beta: 0.1
+    temperature: 1
+
+learn-s30-g10:
+  learning_pattern: learn
+  max_steps: 30
+  num_goals: 10
+  agent_config:
+    hidden_dim: 300
+    gamma: 0.98
+    lr: 0.00003
+    beta: 0.1
+    temperature: 1
