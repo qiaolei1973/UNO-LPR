@@ -39,7 +39,7 @@ SASRec: Use a transformer-based sequential recommendation model with unidirectio
 All settings are remained in /config
 
 ## Evaluation Tasks
-We score 3 runs with the average $E_p$ during training to monitor convergence speed, and validate convergence by $E_p$ of the last 10\% of training episodes in Appendix. We assess and report real-world effectiveness by the average $E_p$ in the testing stage in the following Table /assets/result.pdf .
+We score 3 runs with the average $E_p$ during training to monitor convergence speed, and validate convergence by $E_p$ of the last 10\% of training episodes in Appendix. We assess and report real-world effectiveness by the average $E_p$ in the testing stage in the following Table /assets/result.jpg .
 
 
 ## Incorporate New Datasets or New Models
