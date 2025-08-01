@@ -144,7 +144,7 @@ class POMDPDKT(nn.Module):
         action_emb = self.action_embedding(action_seq) 
     
 
-        # (6) Xu' = Xu || [xT, x[REC]]
+        # (8) Xu' = Xu || [xT, x[REC]]
         if 'goal' in batch:
             action_seq = torch.concat([action_seq, 2+torch.zeros_like(action_seq)[:, 1].unsqueeze(1)],dim=1)
             action_emb = self.action_embedding(action_seq) 
@@ -160,7 +160,7 @@ class POMDPDKT(nn.Module):
         item_pos_emb = self.item_pos_embedding(positions)
         action_pos_emb = self.action_pos_embedding(positions)
 
-        # (7) Xp
+        # (9) Xp
         pos_emb = torch.cat([item_pos_emb, action_pos_emb], dim=2).view(batch_size, seq_len*2, -1)   
         
         if 'session_seq' in batch: 
@@ -170,7 +170,7 @@ class POMDPDKT(nn.Module):
         total_emb = total_emb.view(batch_size, seq_len*2, -1) 
         total_emb *= self.emb_dim ** 0.5 
         
-        # (8) X = Xu' + Xp
+        # (10) X = Xu' + Xp
         total_emb = total_emb + pos_emb  
         x = self.dropout(total_emb)
         
@@ -180,7 +180,7 @@ class POMDPDKT(nn.Module):
         
         x = x * src_key_padding_mask.unsqueeze(-1)  
 
-        # (9)-(11)
+        # (11)-(13)
         output = self.transformer(
             src=x,
             mask=mask
