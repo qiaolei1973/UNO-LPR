@@ -72,7 +72,7 @@ class UNO(nn.Module):
         self.kt_loss = torch.tensor(0.0, device=self.device)
         loss = torch.tensor(0.0, device=self.device)
 
-        # (14) KL(kt_loss) (15) KS(seq_loss):
+        # (16) KL(kt_loss) (17) KS(seq_loss):
         if self.kt_predict:
             kt_loss = self.criterion(outputs.squeeze(), labels)
             loss += self.kt_beta * kt_loss
@@ -108,7 +108,7 @@ class UNO(nn.Module):
                 
         
         outputs, question_output = self.UniRec_model(batch)
-        # (4)
+        # (6)
         state_encoding = self.output_fc(question_output[0, -1, :])
         logits = torch.matmul(state_encoding, self.item_embedding.T) / self.temperature
         probs = F.softmax(logits,dim=-1)
@@ -187,9 +187,9 @@ class UNO(nn.Module):
 
         advantages = rewards
 
-        # (5) Personalized Advantage Estimation:
+        # (7) Personalized Advantage Estimation:
         if rewards.shape[0] > 1:
-            # (3)
+            # (5)
             advantages[1:,:] = advantages[1:,:] - advantages[:-1,:]
             advantages = (advantages - advantages.mean()) / (advantages.std() + 1e-8)
         else:
@@ -219,9 +219,9 @@ class UNO(nn.Module):
                 logits = torch.matmul(group_states_encoding, self.item_embedding.T) / self.temperature
                 new_probs = F.softmax(logits, dim=-1)
                 group_new_probs = new_probs.gather(1, group_actions)
-                # (17) \rho
+                # (19) \rho
                 ratio = group_new_probs / (group_old_probs + 1e-8)
-                # (15) loss of \pi
+                # (18) loss of \pi
                 policy_loss = -torch.min(ratio * group_advantages,
                                          torch.clamp(ratio, 1-self.clip_epsilon, 1+self.clip_epsilon)
                                          * group_advantages).mean()
