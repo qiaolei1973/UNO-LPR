@@ -2,7 +2,7 @@ cuda_visible_devices: 5
 
 dataset_name:  junyi 
 
-model_name: POMDPDKT
+model_name: UniLPR
 
 seed: 42
 
