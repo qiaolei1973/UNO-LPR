@@ -70,7 +70,7 @@ class DKT(nn.Module):
 
         return result
 
-class POMDPDKT(nn.Module):
+class UniLPR(nn.Module):
     def __init__(self, num_item, device, hidden_size, emb_dim, max_len, dropout=0.1, num_layers=2,sigmoid_func=False):
         super().__init__()
         self.num_item = num_item
