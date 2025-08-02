@@ -9,7 +9,7 @@ import os
 import hydra
 from datetime import datetime
 from DataLoad import SeqDataset, PaddingCollateFn, POMDPSeqDataset
-from DKT import DKT, POMDPDKT
+from DKT import DKT, UniLPR
 from omegaconf import DictConfig, OmegaConf
 from utils import related_loss
 
@@ -30,7 +30,7 @@ def create_dataloaders(train_ratio:float=0.8, valid_ratio:float=0.1, config=None
         test_dataset = SeqDataset(test, **config['dataset'])
         collate_fn = PaddingCollateFn(reverse=True)
 
-    elif config.model_name in ['POMDPDKT']:
+    elif config.model_name in ['UniLPR']:
         
         train_dataset = POMDPSeqDataset(train, **config['dataset'])
         eval_dataset = POMDPSeqDataset(validation, **config['dataset'])
