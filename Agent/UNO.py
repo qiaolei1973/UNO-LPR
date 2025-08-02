@@ -3,7 +3,7 @@ import torch.nn as nn
 import torch.optim as optim
 import torch.nn.functional as F
 from .agent_utils import RL_Data, Memory, PolicyNet, ValueNet
-from LifeLongKT import POMDPDKT, related_loss
+from LifeLongKT import UniLPR, related_loss
 import numpy as np
 import random
         
@@ -32,7 +32,7 @@ class UNO(nn.Module):
         self.kt_beta = kt_beta
         self.seq_beta = seq_beta
 
-        self.UniRec_model = POMDPDKT(action_dim, device, hidden_dim, hidden_dim,max_len,sigmoid_func=True)
+        self.UniRec_model = UniLPR(action_dim, device, hidden_dim, hidden_dim,max_len,sigmoid_func=True)
         self.output_fc = nn.Sequential(nn.Linear(hidden_dim, hidden_dim*2), nn.ReLU(), nn.Linear(hidden_dim*2, hidden_dim))
         
         self.criterion = nn.BCEWithLogitsLoss()
