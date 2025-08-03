@@ -18,6 +18,17 @@ Historical Review:  Represent the review of questions previously learned. We ran
 
 Exploratory Learning: Represent the global random selection from questions never met before to expand the knowledge boundary, which is more in line with global search. Similarly, we set the step length to 10, 20, and 30.
 
+### Pretrain Environment Model and Reward Model
+
+First, we split the data into training (80%), validation (10%), and test (10%) sets. We pre-trained 2 Knowledge Tracing models, with each model trained for 100 epochs. We employ Average Precision (AP) and the area under the receiver operating characteristic curve (AUC) to evaluate the performance of all methods in predicting binary student performance. The mean results are shown in Table 1:
+
+| Dataset  | ACC    | AUC    |
+|----------|--------|--------|
+| Junyi    | 0.8217 | 0.8475 |
+| Assist09 | 0.7328 | 0.7703 |
+
+*Table 1: Mean performance of DKT on different datasets.*
+
 ## Baseline Models
 
 AC: Use a DKT to model students' learning states and vanilla actor-critic as recommender.
