@@ -1,0 +1,24 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.eggs/
+*.egg-info/
+
+# Datasets & preprocessing outputs (large downloads / regenerable)
+data/raw_data/
+data/processed_data/
+
+# Training artifacts & checkpoints
+LifeLongKT/saved_models/
+outputs/
+
+# Experiment tracking
+wandb/
+.wandb/
+
+# IDE / OS
+.vscode/
+.idea/
+*.swp
+.DS_Store

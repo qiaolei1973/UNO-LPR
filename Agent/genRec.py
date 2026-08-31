@@ -3,7 +3,7 @@ import torch.nn as nn
 import torch.optim as optim
 import torch.nn.functional as F
 from .agent_utils import RL_Data, Memory, PolicyNet, ValueNet
-from LifeLongKT import POMDPDKT, related_loss, SASRec_KT, GRU4Rec_KT
+from LifeLongKT import related_loss, SASRec_KT, GRU4Rec_KT
 import numpy as np
 import random
 

@@ -102,8 +102,8 @@ def train_kt(config):
     
     if config.model_name == 'DKT':
         model = DKT(num_item, device, **config['model']).to(device)
-    elif config.model_name == 'POMDPDKT':
-        model = POMDPDKT(num_item, device, **config['model']).to(device)
+    elif config.model_name == 'UniLPR':
+        model = UniLPR(num_item, device, **config['model']).to(device)
     
     
     criterion =  nn.BCEWithLogitsLoss() 
