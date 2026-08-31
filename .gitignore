@@ -22,3 +22,6 @@ wandb/
 .idea/
 *.swp
 .DS_Store
+
+# Paper PDF (copyrighted, not committed)
+UNO_AAAI2026.pdf
